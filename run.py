@@ -46,6 +46,12 @@ class battleshipgame:
 
 
     def player_guess(self, row, col):
+        # Check if the player has already guessed this spot
+        if self.computer_board[row][col] in ['H', 'M']:
+            print("You already guessed that spot.")
+            return False
+
+
         # Process the player's guess
         if self.computer_board[row][col] == 'X':
             print("Hit!")
@@ -71,6 +77,36 @@ class battleshipgame:
             self.player_board[row][col] = 'M'
 
 
+def play(self):
+    # Game loop, player and computer take turns guessing
+    while True:
+        self.print_board()
+        guess_row = int(input(f"Guess a row (0-{self.grid_size - 1}): "))
+        guess_col = int(input(f"Guess a column (0-{self.grid_size - 1}): "))
+        
+        # To warn if the player guesses outside the grid
+        if guess_row < 0 or guess_row >= self.grid_size or guess_col < 0 or guess_col >= self.grid_size:
+            print("That's outside the grid")
+            continue
+
+        self.player_guess(guess_row, guess_col)
+
+        # Check if the player has won
+        if not any('X' in row for row in self.computer_board):
+            print("You sank the computers ships!")
+            break
+
+
+        # Conputer's turn
+        print("\nComputer's Turn")
+        self.computer_guess()
+
+        # Check if the computer has won
+        if not any('X' in row for row in self.player_board):
+            print("The computer has sunken all your ships!")
+            break
+
+
 if __name__ == "__main__":
-    game = battleshipgame()
+    game = battleshipgame(size, num_of_ships)
     game.play()
