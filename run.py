@@ -14,6 +14,9 @@ class Battleshipgame:
         self.grid_size = grid_size
         self.num_of_ships = num_of_ships
 
+        if self.num_of_ships > self.grid_size * self.grid_size:
+            raise ValueError(Fore.RED + "Number of ships can't exceed the grid size")
+
         # fill the board with 0's
         self.player_board = [["0"] * self.grid_size for i in range(self.grid_size)]
         self.computer_board = [["0"] * self.grid_size for i in range(self.grid_size)]
@@ -131,6 +134,11 @@ class Battleshipgame:
 
 if __name__ == "__main__":
     size = int(input("Enter the grid size: "))
-    num_of_ships = int(input("Enter the number of ships: "))
-    game = Battleshipgame(size, num_of_ships)
+    while True:
+        try:
+            num_of_ships = int(input("Enter the number of ships: "))
+            game = Battleshipgame(size, num_of_ships)
+            break
+        except ValueError as e:
+            print(e)
     game.play()
