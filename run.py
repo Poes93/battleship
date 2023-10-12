@@ -1,4 +1,6 @@
 import random
+from colorama import Fore, init
+init(autoreset=True)
 
 
 class Battleshipgame:
@@ -32,7 +34,7 @@ class Battleshipgame:
         # Computer's board
         print("Computer Board:")
         for row in self.computer_board:
-            print(" ".join(['O' if cell == 'S' else cell for cell in row]))
+            print(" ".join(['O' if cell == 'X' else cell for cell in row]))
 
     def place_ships(self, board):
         """
@@ -56,15 +58,15 @@ class Battleshipgame:
         Check if the player has already guessed this spot
         """
         if self.computer_board[row][col] in ["H", "M"]:
-            print("You already guessed that spot, try again")
+            print(Fore.MAGENTA + "You already guessed that spot, try again")
             return False
 
         # Process the player's guess
         if self.computer_board[row][col] == "X":
-            print("Hit!")
+            print(Fore.RED + "Hit!")
             self.computer_board[row][col] = "H"
         else:
-            print("Miss!")
+            print(Fore.BLUE + "Miss!")
             self.computer_board[row][col] = "M"
         return True
 
@@ -79,10 +81,10 @@ class Battleshipgame:
             if self.player_board[row][col] not in ["H", "M"]:
                 break
         if self.player_board[row][col] == "X":
-            print(f"Computer has hit your ship at ({row}, {col})")
+            print(Fore.RED + f"Computer has hit your ship at ({row}, {col})")
             self.player_board[row][col] = "H"
         else:
-            print(f"Computer has missed your ship at ({row}, {col})")
+            print(Fore.BLUE + f"Computer has missed your ship at ({row}, {col})")
             self.player_board[row][col] = "M"
 
     def play(self):
