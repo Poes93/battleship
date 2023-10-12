@@ -37,7 +37,7 @@ class Battleshipgame:
         # Computer's board
         print("Computer Board:")
         for row in self.computer_board:
-            print(" ".join(['O' if cell == 'X' else cell for cell in row]))
+            print(" ".join(['0' if cell == 'X' else cell for cell in row]))
 
     def place_ships(self, board):
         """
@@ -133,6 +133,21 @@ class Battleshipgame:
 
 
 if __name__ == "__main__":
+    # Print a welcome message and instructions
+    print(Fore.YELLOW + "===================================")
+    print(Fore.YELLOW + "Welcome to the Battleship game!")
+    print(Fore.YELLOW + "===================================")
+    print(Fore.CYAN + """
+    Instructions:
+    1. You will be asked to enter the grid size and number of ships.
+    2. Take turns to guess the position of each other's ships.
+    3. The aim is to sink all the enemy's ships before they sink yours.
+    4. 'X' represents a ship.
+    5. 'H' represents a hit.
+    6. 'M' represents a miss.
+    7. 'O' represents an unknown position.
+    """)
+
     size = int(input("Enter the grid size: "))
     while True:
         try:
