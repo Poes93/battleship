@@ -3,7 +3,7 @@ from colorama import Fore, init
 init(autoreset=True)
 
 
-class Battleshipgame:
+class BattleshipGame:
     """
     Whole game class, contains all the game logic
     """
@@ -15,11 +15,17 @@ class Battleshipgame:
         self.num_of_ships = num_of_ships
 
         if self.num_of_ships > self.grid_size * self.grid_size:
-            raise ValueError(Fore.RED + "Number of ships can't exceed the grid size")
+            raise ValueError(
+                Fore.RED + "Number of ships can't exceed the grid size"
+                )
 
         # fill the board with 0's
-        self.player_board = [["0"] * self.grid_size for i in range(self.grid_size)]
-        self.computer_board = [["0"] * self.grid_size for i in range(self.grid_size)]
+        self.player_board = (
+            [["0"] * self.grid_size for _ in range(self.grid_size)]
+            )
+        self.computer_board = (
+            [["0"] * self.grid_size for _ in range(self.grid_size)]
+            )
 
         # place the ships on the board
         self.place_ships(self.player_board)
@@ -84,10 +90,14 @@ class Battleshipgame:
             if self.player_board[row][col] not in ["H", "M"]:
                 break
         if self.player_board[row][col] == "X":
-            print(Fore.RED + f"Computer has hit your ship at ({row}, {col})")
+            print(
+                Fore.RED + f"Computer has hit your ship at ({row}, {col})"
+                )
             self.player_board[row][col] = "H"
         else:
-            print(Fore.BLUE + f"Computer has missed your ship at ({row}, {col})")
+            print(
+                Fore.BLUE + f"Computer has missed your ship at ({row}, {col})"
+                )
             self.player_board[row][col] = "M"
 
     def play(self):
@@ -99,8 +109,12 @@ class Battleshipgame:
 
             while True:
                 try:
-                    guess_row = int(input(f"Guess a row (0-{self.grid_size - 1}): "))
-                    guess_col = int(input(f"Guess a column (0-{self.grid_size - 1}): "))
+                    guess_row = int(
+                        input(f"Guess a row (0-{self.grid_size - 1}): ")
+                        )
+                    guess_col = int(
+                        input(f"Guess a column (0-{self.grid_size - 1}): ")
+                        )
 
                     # To warn if the player guesses outside the grid
                     if (
@@ -152,7 +166,7 @@ if __name__ == "__main__":
     while True:
         try:
             num_of_ships = int(input("Enter the number of ships: "))
-            game = Battleshipgame(size, num_of_ships)
+            game = BattleshipGame(size, num_of_ships)
             break
         except ValueError:
             print(Fore.RED + "You have entered more ships than grid!")
