@@ -7,11 +7,11 @@ class Battleshipgame:
     """
     Whole game class, contains all the game logic
     """
-    def __init__(self):
+    def __init__(self, grid_size):
         """
         initialize the game parameters with grid size and number of ships
         """
-        self.grid_size = 5
+        self.grid_size = grid_size
         self.num_of_ships = 5
 
         # fill the board with 0's
@@ -116,7 +116,7 @@ class Battleshipgame:
 
             # Check if the player has won
             if not any("X" in row for row in self.computer_board):
-                print("You sank the computers ships!")
+                print(Fore.GREEN + "You sank the computers ships!")
                 break
 
             # Computer's turn
@@ -125,10 +125,11 @@ class Battleshipgame:
 
             # Check if the computer has won
             if not any("X" in row for row in self.player_board):
-                print("The computer has sunken all your ships!")
+                print(Fore.RED + "The computer has sunken all your ships!")
                 break
 
 
 if __name__ == "__main__":
-    game = Battleshipgame()
+    size = int(input("Enter the grid size: "))
+    game = Battleshipgame(size)
     game.play()
