@@ -7,12 +7,12 @@ class Battleshipgame:
     """
     Whole game class, contains all the game logic
     """
-    def __init__(self, grid_size):
+    def __init__(self, grid_size, num_of_ships):
         """
         initialize the game parameters with grid size and number of ships
         """
         self.grid_size = grid_size
-        self.num_of_ships = 5
+        self.num_of_ships = num_of_ships
 
         # fill the board with 0's
         self.player_board = [["0"] * self.grid_size for i in range(self.grid_size)]
@@ -131,5 +131,6 @@ class Battleshipgame:
 
 if __name__ == "__main__":
     size = int(input("Enter the grid size: "))
-    game = Battleshipgame(size)
+    num_of_ships = int(input("Enter the number of ships: "))
+    game = Battleshipgame(size, num_of_ships)
     game.play()
