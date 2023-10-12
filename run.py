@@ -1,9 +1,14 @@
 import random
 
 
-class battleshipgame:
+class Battleshipgame:
+    """
+    Whole game class, contains all the game logic
+    """
     def __init__(self):
-        # initialize the game parameters with grid size and number of ships
+        """
+        initialize the game parameters with grid size and number of ships
+        """
         self.grid_size = 5
         self.num_of_ships = 5
 
@@ -16,8 +21,9 @@ class battleshipgame:
         self.place_ships(self.computer_board)
 
     def print_board(self):
-        # print the board
-        # starting the game and printing the board
+        """
+        Starting the game and printing the board
+        """
         print("Let's play Battleship!")
         print("Player Board:")
         for row in self.player_board:
@@ -26,11 +32,13 @@ class battleshipgame:
         # Computer's board
         print("Computer Board:")
         for row in self.computer_board:
-            print(" ".join(row))
+            print(" ".join(['O' if cell == 'S' else cell for cell in row]))
 
     def place_ships(self, board):
-        # place the ships on the board
-        for i in range(self.num_of_ships):
+        """
+        Places the ships on the board
+        """
+        for _ in range(self.num_of_ships):
             # generate a random row and column
             row = random.randint(0, self.grid_size - 1)
             col = random.randint(0, self.grid_size - 1)
@@ -44,9 +52,11 @@ class battleshipgame:
             board[row][col] = "X"
 
     def player_guess(self, row, col):
-        # Check if the player has already guessed this spot
+        """
+        Check if the player has already guessed this spot
+        """
         if self.computer_board[row][col] in ["H", "M"]:
-            print("You already guessed that spot.")
+            print("You already guessed that spot, try again")
             return False
 
         # Process the player's guess
@@ -56,9 +66,12 @@ class battleshipgame:
         else:
             print("Miss!")
             self.computer_board[row][col] = "M"
+        return True
 
     def computer_guess(self):
-        # Process the computer's guess
+        """
+        Process the computer's guess
+        """
         while True:
             row = random.randint(0, self.grid_size - 1)
             col = random.randint(0, self.grid_size - 1)
@@ -72,32 +85,39 @@ class battleshipgame:
             print(f"Computer has missed your ship at ({row}, {col})")
             self.player_board[row][col] = "M"
 
-
     def play(self):
-        # Game loop, player and computer take turns guessing
+        """
+        Game loop, player and computer take turns guessing
+        """
         while True:
             self.print_board()
-            guess_row = int(input(f"Guess a row (0-{self.grid_size - 1}): "))
-            guess_col = int(input(f"Guess a column (0-{self.grid_size - 1}): "))
 
-            # To warn if the player guesses outside the grid
-            if (
-                guess_row < 0
-                or guess_row >= self.grid_size
-                or guess_col < 0
-                or guess_col >= self.grid_size
-            ):
-                print("That's outside the grid")
-                continue
+            while True:
+                try:
+                    guess_row = int(input(f"Guess a row (0-{self.grid_size - 1}): "))
+                    guess_col = int(input(f"Guess a column (0-{self.grid_size - 1}): "))
 
-            self.player_guess(guess_row, guess_col)
+                    # To warn if the player guesses outside the grid
+                    if (
+                        guess_row < 0
+                        or guess_row >= self.grid_size
+                        or guess_col < 0
+                        or guess_col >= self.grid_size
+                    ):
+                        print("That's outside the grid")
+                        continue
+
+                    if self.player_guess(guess_row, guess_col):
+                        break
+                except ValueError:
+                    print("Please enter a number")
 
             # Check if the player has won
             if not any("X" in row for row in self.computer_board):
                 print("You sank the computers ships!")
                 break
 
-            # Conputer's turn
+            # Computer's turn
             print("\nComputer's Turn")
             self.computer_guess()
 
@@ -108,5 +128,5 @@ class battleshipgame:
 
 
 if __name__ == "__main__":
-    game = battleshipgame()
+    game = Battleshipgame()
     game.play()
