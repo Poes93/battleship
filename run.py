@@ -109,13 +109,13 @@ class Battleshipgame:
                         or guess_col < 0
                         or guess_col >= self.grid_size
                     ):
-                        print("That's outside the grid")
+                        print(Fore.RED + "That's outside the grid")
                         continue
 
                     if self.player_guess(guess_row, guess_col):
                         break
                 except ValueError:
-                    print("Please enter a number")
+                    print(Fore.RED + "Please enter a number")
 
             # Check if the player has won
             if not any("X" in row for row in self.computer_board):
@@ -139,6 +139,6 @@ if __name__ == "__main__":
             num_of_ships = int(input("Enter the number of ships: "))
             game = Battleshipgame(size, num_of_ships)
             break
-        except ValueError as e:
-            print(e)
+        except ValueError:
+            print(Fore.RED + "You have entered more ships than grid!")
     game.play()
