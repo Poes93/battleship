@@ -175,8 +175,8 @@ if __name__ == "__main__":
             game = BattleshipGame(size, num_of_ships)
             break
         except ValueError as e:
-            if str(e) == "Number of ships can't exceed the grid size":
-                print(Fore.RED + "You have entered more ships than grid!")
+            if "Number of ships can't exceed the grid size" in str(e):
+                print(Fore.RED + "You have entered more ships than the grid!")
             else:
                 print(Fore.RED + "Please enter a number")
 
