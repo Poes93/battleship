@@ -162,12 +162,22 @@ if __name__ == "__main__":
     7. 'O' represents an unknown position.
     """)
 
-    size = int(input("Enter the grid size: "))
+    while True:
+        try:
+            size = int(input("Enter the grid size: "))
+            break
+        except ValueError:
+            print(Fore.RED + "Please enter a number")
+
     while True:
         try:
             num_of_ships = int(input("Enter the number of ships: "))
             game = BattleshipGame(size, num_of_ships)
             break
-        except ValueError:
-            print(Fore.RED + "You have entered more ships than grid!")
+        except ValueError as e:
+            if str(e) == "Number of ships can't exceed the grid size":
+                print(Fore.RED + "You have entered more ships than grid!")
+            else:
+                print(Fore.RED + "Please enter a number")
+
     game.play()
