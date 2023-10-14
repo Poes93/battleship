@@ -1,5 +1,4 @@
 import random
-import sys
 from colorama import Fore, Style, init
 init(autoreset=True)
 
@@ -33,19 +32,32 @@ class BattleshipGame:
         self.place_ships(self.player_board)
         self.place_ships(self.computer_board)
 
-    def print_board(self):
-        """
-        Starting the game and printing the board
-        """
-        print("Let's play Battleship!")
-        print("Player Board:")
-        for row in self.player_board:
-            print(" ".join(row))
 
-        # Computer's board
-        print("Computer Board:")
-        for row in self.computer_board:
-            print(" ".join(['0' if cell == 'X' else cell for cell in row]))
+def print_board(self):
+    """
+    Starting the game and printing the board
+    """
+    print("Let's play Battleship!")
+    print("Player Board:")
+    for row in self.player_board:
+        colored_row = [
+            Fore.RED + "X"
+            if cell == "X" else (Fore.GREEN + "H" if cell == "H" else
+                                 (Fore.BLUE + "M" if cell == "M" else
+                                  cell)) for cell in row]
+        print(" ".join(colored_row))
+
+    # Computer's board
+    print("Computer Board:")
+    for row in self.computer_board:
+        colored_row = [Fore.RED + "X" if cell == "X" else
+                       (Fore.GREEN + "H" if
+                        cell == "H" else (Fore.BLUE + "M" if
+                                          cell == "M" else cell)) for
+                       cell in row]
+        # Remember to still obscure the ships ("X") on the computer's board
+        print(" ".join(['0' if cell == Fore.RED + "X" else
+                        cell for cell in colored_row]))
 
     def place_ships(self, board):
         """
@@ -175,9 +187,11 @@ if __name__ == "__main__":
     while True:
         while True:
             try:
-                size = int(input(Fore.YELLOW + Style.BRIGHT + "Enter the grid size: "))
+                size = int(input(Fore.YELLOW + Style.BRIGHT +
+                                 "Enter the grid size: "))
                 if size <= 0:   # check if the size is valid
-                    print(Fore.RED + Style.BRIGHT + "Grid size should be greater than 0.")
+                    print(Fore.RED + Style.BRIGHT +
+                          "Grid size should be greater than 0.")
                     continue
                 break
             except ValueError:
@@ -185,15 +199,21 @@ if __name__ == "__main__":
 
         while True:
             try:
-                num_of_ships = int(input(Fore.YELLOW + Style.BRIGHT + "Enter the number of ships: "))
-                if num_of_ships <= 0 or num_of_ships > size*size:   # check if the number of ships is valid
-                    print(Fore.RED + Style.BRIGHT + "Number of ships should be greater than 0 and not exceed grid capacity.")
+                num_of_ships = int(input(Fore.YELLOW +
+                                         Style.BRIGHT +
+                                         "Enter the number of ships: "))
+                # check if the number of ships is valid
+                if num_of_ships <= 0 or num_of_ships > size*size:
+                    print(Fore.RED + Style.BRIGHT +
+                          "Number of ships should be" +
+                          "greater than 0 and not exceed grid capacity.")
                     continue
                 game = BattleshipGame(size, num_of_ships)
                 break
             except ValueError as e:
                 if "Number of ships can't exceed the grid size" in str(e):
-                    print(Fore.RED + Style.BRIGHT + "You have entered more ships than the grid!")
+                    print(Fore.RED + Style.BRIGHT +
+                          "You have entered more ships than the grid!")
                 else:
                     print(Fore.RED + Style.BRIGHT + "Please enter a number")
 

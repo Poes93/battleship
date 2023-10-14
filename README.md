@@ -29,7 +29,6 @@ A live version of the project can be viewed [Here](https://battleshipgame1-e369f
 4. [**Technologies and Libraries Used**](#technologies-and-libraries-used)
 5. [**Testing**](#testing)
    * [Testing during development](#testing-during-development)
-   * [Bugs Found](#bugs-found)
    * [Functional Testing](#functional-testing)
    * [Validator Testing](#validator-testing)
 6. [**Deployment**](#deployment)
@@ -197,8 +196,6 @@ The game uses the colorama library to display colored output to enhance the user
 * `print()`and `type()` were used during the development process, to help identify possible errors and bugs.
 * All the prompts to the user were tested manually.
 
-### Bugs Found
-
 ### Functional Testing
 
 After the game was deployed on Heroku at the end of the development stage, a dedicated manual testing was carried out as a user at Heroku terminal. Each input option was tested with all the possible scenarios and particular attention was paid to validating the value of the input. The player's board as well as the computer's board were closely monitored to check if any changes were made as a consequence of the guesses made on each round.
@@ -270,6 +267,5 @@ Resources used to implement specific features:
 Resources helped to fix issues/errors in coding:
 
 * [Breaking up long lines of code in Python](https://www.pythonmorsels.com/breaking-long-lines-code-python/)
-* [Exit the game at the end](https://www.geeksforgeeks.org/python-exit-commands-quit-exit-sys-exit-and-os-_exit/)
 * [Inspiration and guiding](https://www.youtube.com/watch?v=tF1WRCrd_HQ)
 * [Random Module](https://www.geeksforgeeks.org/python-random-module/)
