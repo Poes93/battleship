@@ -109,7 +109,6 @@ You can customize the game in the following ways:
 ### Site Goal
 
 * This App was designed based on user stories to provide the best dynamic experience.
-* User Inputs are designed **NOT** case-sensitive. No matter what case the user types in, the outcome of the answer remains the same.
 * Colored text and formatted grids for a better site readability and user friendly interface.
 
 ## Features
@@ -200,13 +199,6 @@ The game uses the colorama library to display colored output to enhance the user
 
 ### Bugs Found
 
-* It is possible to input the digit `0` when prompted to choose the size of the grid, this resulted in a non-existing grid but the game continued to prompt the user to input the number of ships. This could fixed in the future by adding `0` as a `ValueError` condition when validating the input.
-
-* The input `0` is valid when choosing the number of ships to play with. This becomes an error in the game logic resulting in the player immediately losing the game.  This could fixed in the future by adding `0` as a `ValueError` condition when validating the input.
-
-* When the game is completed and user gets asked for a second round, if yes: By entering for example 0 ships the game quits instead...
-And when saying no, the game freezes.
-
 ### Functional Testing
 
 After the game was deployed on Heroku at the end of the development stage, a dedicated manual testing was carried out as a user at Heroku terminal. Each input option was tested with all the possible scenarios and particular attention was paid to validating the value of the input. The player's board as well as the computer's board were closely monitored to check if any changes were made as a consequence of the guesses made on each round.
@@ -221,7 +213,7 @@ Here are the results:
 | Entering a larger number than the grid     | Enter a number higher to grid size    | Error message "That's outside the grid"          | PASS   |
 | Hit or miss a ship                         | Enter the right or wrong row and col  | Message should appear Miss or Hit                | PASS   |
 | Play the game again when round is finished | Enter Yes                             | Game restarts                                    | PASS   |
-| Play the game again when round is finished | Enter No                              | Game quits                                       | FAIL   |
+| Play the game again when round is finished | Enter No                              | Game quits                                       | PASS   |
 | To get the right information               | Enter a letter                        | Error message "Please enter a number"            | PASS   |
 
 
