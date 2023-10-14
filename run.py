@@ -67,7 +67,7 @@ class BattleshipGame:
         Check if the player has already guessed this spot
         """
         if self.computer_board[row][col] in ["H", "M"]:
-            print(Fore.MAGENTA + "You already guessed that spot, try again")
+            print(Fore.RED + "You already guessed that spot, try again")
             return False
 
         # Process the player's guess
@@ -155,11 +155,13 @@ if __name__ == "__main__":
     Instructions:
     1. You will be asked to enter the grid size and number of ships.
     2. Take turns to guess the position of each other's ships.
-    3. The aim is to sink all the enemy's ships before they sink yours.
-    4. 'X' represents a ship.
-    5. 'H' represents a hit.
-    6. 'M' represents a miss.
-    7. 'O' represents an unknown position.
+    3. You can guess a position by entering the row and column number
+    where 0 is the first row/column.
+    4. The aim is to sink all the enemy's ships before they sink yours.
+    5. 'X' represents a ship.
+    6. 'H' represents a hit.
+    7. 'M' represents a miss.
+    8. '0' represents an unknown position.
     """)
 
     while True:
@@ -180,4 +182,30 @@ if __name__ == "__main__":
             else:
                 print(Fore.RED + "Please enter a number")
 
-    game.play()
+    while True:
+        game.play()
+        play_again = input("Do you want to play again? (yes/no): ")
+        if play_again.lower() == "yes":
+            while True:
+                try:
+                    size = int(input("Enter the new grid size: "))
+                    break
+                except ValueError:
+                    print(Fore.RED + "Please enter a number")
+
+            while True:
+                try:
+                    num_of_ships = (
+                        int(input("Enter the new number of ships: "))
+                        )
+                    game = BattleshipGame(size, num_of_ships)
+                    break
+                except ValueError as e:
+                    if "Number of ships can't exceed the grid size" in str(e):
+                        print(Fore.RED + (
+                            "You have entered more ships than the grid!")
+                              )
+                    else:
+                        print(Fore.RED + "Please enter a number")
+        else:
+            break
