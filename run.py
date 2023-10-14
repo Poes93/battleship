@@ -1,4 +1,5 @@
 import random
+import sys
 from colorama import Fore, init
 init(autoreset=True)
 
@@ -167,6 +168,9 @@ if __name__ == "__main__":
     while True:
         try:
             size = int(input("Enter the grid size: "))
+            if size <= 0:   # check if the size is valid
+                print(Fore.RED + "Grid size should be greater than 0.")
+                continue
             break
         except ValueError:
             print(Fore.RED + "Please enter a number")
@@ -184,6 +188,7 @@ if __name__ == "__main__":
 
     while True:
         game.play()
+        # Ask if the player wants to play again
         play_again = input("Do you want to play again? (yes/no): ")
         if play_again.lower() == "yes":
             while True:
@@ -192,7 +197,7 @@ if __name__ == "__main__":
                     break
                 except ValueError:
                     print(Fore.RED + "Please enter a number")
-
+            # Check if the size is valid for the next game
             while True:
                 try:
                     num_of_ships = (
@@ -209,3 +214,4 @@ if __name__ == "__main__":
                         print(Fore.RED + "Please enter a number")
         else:
             break
+        sys.exit()
