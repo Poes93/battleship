@@ -17,7 +17,7 @@ A live version of the project can be viewed [Here](https://battleshipgame1-e369f
    * [User Stories](#user-stories)
    * [Site Goal](#site-goal)
 3. [**Features**](#features)
-   * [App Title and Main Menu](#app-title-and-main-menu)
+   * [Start](#Start)
    * [Initialization of the Game](#initialization-of-the-game)
    * [Displaying the Board](#displaying-the-board)
    * [Placing Ships](#placing-ships)
@@ -50,10 +50,10 @@ You can also set the number of ships on the grid. In this version, all ships hav
 
 ### Placing Your Ships:
 
-At the beginning of the game, your ships are automatically placed on the grid. You don't have control over ship placement in this version.
-Taking Turns:
+* At the beginning of the game, your ships are automatically placed on the grid. You don't have control over ship placement in this version.
+* Taking Turns:
 
-You and the computer take turns attacking each other's grids.
+* You and the computer take turns attacking each other's grids.
 You will be prompted to enter the row and column for your attack.
 The computer's attacks are randomized.
 
@@ -76,14 +76,14 @@ Once the game is over, you will be notified of the result (win or lose), and you
 
 * Instructions:
     1. You will be asked to enter the grid size and number of ships.
-    2. Take turns to guess the position of each other's ships.
-    3. You can guess a position by entering the row and column number
+    1. Take turns to guess the position of each other's ships.
+    1. You can guess a position by entering the row and column number
     where 0 is the first row/column.
-    4. The aim is to sink all the enemy's ships before they sink yours.
-    5. 'X' represents a ship.
-    6. 'H' represents a hit.
-    7. 'M' represents a miss.
-    8. '0' represents an unknown position.
+    1. The aim is to sink all the enemy's ships before they sink yours.
+    1. 'X' represents a ship.
+    1. 'H' represents a hit.
+    1. 'M' represents a miss.
+    1. '0' represents an unknown position.
 
 ## Customization
 
@@ -114,7 +114,7 @@ You can customize the game in the following ways:
 
 ## Features
 
-### App Title and Main Menu
+### Start
 
 ![Start](documentation/img/battleship_start_screen.png)
 
