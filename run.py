@@ -178,6 +178,9 @@ if __name__ == "__main__":
     while True:
         try:
             num_of_ships = int(input("Enter the number of ships: "))
+            if num_of_ships <= 0:   # check if the size is valid
+                print(Fore.RED + "Number of ships should be greater than 0.")
+                continue
             game = BattleshipGame(size, num_of_ships)
             break
         except ValueError as e:
