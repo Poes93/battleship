@@ -174,9 +174,11 @@ if __name__ == "__main__":
     while True:
         while True:
             try:
-                size = int(input(Fore.YELLOW + Style.BRIGHT + "Enter the grid size: "))
+                size = int(input(Fore.YELLOW +
+                                 Style.BRIGHT + "Enter the grid size: "))
                 if size <= 0:   # check if the size is valid
-                    print(Fore.RED + Style.BRIGHT + "Grid size should be greater than 0.")
+                    print(Fore.RED + Style.BRIGHT +
+                          "Grid size should be greater than 0.")
                     continue
                 break
             except ValueError:
@@ -184,20 +186,28 @@ if __name__ == "__main__":
 
         while True:
             try:
-                num_of_ships = int(input(Fore.YELLOW + Style.BRIGHT + "Enter the number of ships: "))
-                if num_of_ships <= 0 or num_of_ships > size*size:   # check if the number of ships is valid
-                    print(Fore.RED + Style.BRIGHT + "Number of ships should be greater than 0 and not exceed grid capacity.")
+                num_of_ships = int(input(Fore.YELLOW +
+                                         Style.BRIGHT +
+                                         "Enter the number of ships: "))
+                # check if the number of ships is valid
+                if num_of_ships <= 0 or num_of_ships > size*size:
+                    print(Fore.RED + Style.BRIGHT +
+                          "Ships can't be 0."
+                          )
                     continue
                 game = BattleshipGame(size, num_of_ships)
                 break
             except ValueError as e:
                 if "Number of ships can't exceed the grid size" in str(e):
-                    print(Fore.RED + Style.BRIGHT + "You have entered more ships than the grid!")
+                    print(Fore.RED + Style.BRIGHT +
+                          "You have entered more ships than the grid!")
                 else:
                     print(Fore.RED + Style.BRIGHT + "Please enter a number")
 
         game.play()
         # Ask if the player wants to play again
-        play_again = input("Do you want to play again? (yes/no): ")
+        play_again = (
+            input("Do you want to play again? (yes/no): ").strip().lower()
+            )
         if play_again.lower() != "yes":
             break
