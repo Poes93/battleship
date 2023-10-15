@@ -31,6 +31,7 @@ A live version of the project can be viewed [Here](https://battleshipgame1-e369f
    * [Testing during development](#testing-during-development)
    * [Functional Testing](#functional-testing)
    * [Validator Testing](#validator-testing)
+   * [Bugs](#Bugs)
 6. [**Deployment**](#deployment)
    * [Version Control](#version-control)
    * [To deploy to Heroku terminal](#to-deploy-to-heroku-terminal)
@@ -210,15 +211,19 @@ Here are the results:
 | Entering a larger number than the grid     | Enter a number higher to grid size    | Error message "That's outside the grid"          | PASS   |
 | Hit or miss a ship                         | Enter the right or wrong row and col  | Message should appear Miss or Hit                | PASS   |
 | Play the game again when round is finished | Enter Yes                             | Game restarts                                    | PASS   |
-| Play the game again when round is finished | Enter No                              | Game quits                                       | PASS   |
+| Play the game again when round is finished | Enter No                              | Game quits                                       | FAIL   |
 | To get the right information               | Enter a letter                        | Error message "Please enter a number"            | PASS   |
 
 
 ### Validator Testing
 
-[pep8](https://pep8ci.herokuapp.com) was used for validating the python files.  No errors reported.
+[pep8](https://pep8ci.herokuapp.com) was used for validating the python files. No errors reported.
 
 ![Pep8 Results Screenshot](documentation/img/battleship_python_linter.png)
+
+### Bugs
+
+* When game is finished and user wants to opt out (choosing no) the game freezes.
 
 
 ## Deployment
